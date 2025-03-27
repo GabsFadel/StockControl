@@ -3,10 +3,10 @@
 ## 📜 Descrição
 Esta API foi desenvolvida para gerenciar o controle de estoque de produtos. Ela permite:
 
-✅ Criar e gerenciar usuários.  
-✅ Gerenciar produtos.  
-✅ Registrar movimentações de entrada e saída no estoque.  
-✅ Separar dados por organização (empresa).  
+- ✅ Criar e gerenciar usuários.  
+- ✅ Gerenciar produtos.  
+- ✅ Registrar movimentações de entrada e saída no estoque.  
+- ✅ Separar dados por organização (empresa).  
 
 ---
 
@@ -65,69 +65,3 @@ npm install
 
 # Inicie a API
 npm start
-```
-
----
-
-## 📌 Endpoints Principais
-
-### 📦 Inventory
-- **GET** `/inventory` - Retorna todos os registros de estoque.
-- **GET** `/inventory/:id` - Retorna um registro específico.
-- **POST** `/inventory` - Cria um novo registro.
-- **PUT** `/inventory/:id` - Atualiza um registro.
-- **DELETE** `/inventory/:id` - Exclui um registro.
-
-### 🔄 Inventory Movement
-- **GET** `/inventoryMovement` - Retorna todas as movimentações.
-- **GET** `/inventoryMovement/:id` - Retorna uma movimentação específica.
-- **POST** `/inventoryMovement` - Cria uma nova movimentação.
-- **PUT** `/inventoryMovement/:id` - Atualiza uma movimentação.
-- **DELETE** `/inventoryMovement/:id` - Exclui uma movimentação.
-
-### 🏢 Organization
-- **GET** `/organization/:id` - Retorna dados da organização.
-- **POST** `/organization` - Cria uma nova organização.
-- **PUT** `/organization/:id` - Atualiza os dados.
-- **DELETE** `/organization/:id` - Exclui uma organização.
-
-### 📦 Product
-- **GET** `/products` - Retorna todos os produtos.
-- **GET** `/products/:id` - Retorna um produto pelo ID.
-- **POST** `/products` - Cria um novo produto.
-- **PUT** `/products/:id` - Atualiza um produto.
-- **DELETE** `/products/:id` - Exclui um produto.
-
-### 👤 Usuários
-- **POST** `/users` - Cria um novo usuário.
-- **POST** `/users/login` - Autentica um usuário.
-
----
-
-## 🗄️ Banco de Dados
-A API usa **MySQL via XAMPP**. No futuro, poderá suportar **SQL Server**.
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-- 🟢 **Node.js** - Ambiente de execução JavaScript.
-- ⚡ **Express** - Framework para construir a API.
-- 🗄️ **MySQL** - Banco de dados atual.
-- 💻 **XAMPP** - Gerenciamento do servidor local.
-
----
-
-## 🤝 Contribuição
-Contribuições são bem-vindas! Siga os passos:
-1. Faça um **fork** do repositório.
-2. Crie um **branch** para sua feature/bugfix.
-3. Envie um **Pull Request** com suas alterações.
-
----
-
-## 📄 Licença
-Este projeto está licenciado sob a **Licença MIT**. Consulte o arquivo LICENSE para mais detalhes.
-
-📩 *Se precisar de mais informações ou suporte, entre em contato!* 🚀
-
