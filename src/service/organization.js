@@ -1,4 +1,5 @@
 const modelOrganization = require('../model/organization')
+const ServiceUser = require('./user')
 
 class ServiceOrganization {
 
@@ -21,13 +22,24 @@ class ServiceOrganization {
             { transaction }
         )
 
-        // criar um usuário quando criar uma organization
+        const password = "abc123"
+        const user = await ServiceUser.Create(
+          organization.id, 
+          `Admin${name}`,
+          email,
+          password,
+          'admin',
+          transaction
+        )
 
-        return organization
+        return { organization, user: { ...user.dataValues, password} }
     }
 
     async Update(id, name, address, phone, email, transaction) {
         const organization = await this.FindById(id, transaction)
+        if(!organization) {
+          throw new Error('Empresa não encontrada')
+        }
 
         organization.name = name || organization.name
         organization.address = address || organization.address
@@ -37,7 +49,11 @@ class ServiceOrganization {
         return organization.save({ transaction })
     }
 
+    async Delete(organization_id, id, transaction) {
+        const organization = await this.FindById(id, transaction)
 
+        organization.destroy({ transaction })
+    }
 
 
 }

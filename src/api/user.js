@@ -1,10 +1,12 @@
+const serviceUser = require("../service/user")
+
 class ApiUser {
 
   async FindById(req, res) {
     try {
       const organization_id = 1 
       const { id } = req.params
-      const user = {} //await service.findById(user
+      const user = await serviceUser.FindById(organization_id, id)
 
       res.status(200).send({ user })
     } catch (error) {
@@ -14,7 +16,7 @@ class ApiUser {
   async FindAll(req , res) {
     try {
       const organization_id = 1
-      const users = [{}] //await service.findAll(user
+      const users = await serviceUser.FindAll(organization_id)
 
       res.status(200).send({ users })
     } catch (error) {
@@ -25,7 +27,7 @@ class ApiUser {
     try {
       const organization_id = 1
       const { name, email, password, role } = req.body
-      const user = {} //await service.create(user)
+      const user = await serviceUser.Create(organization_id, name, email, password, role)
 
       res.status(200).send({ user })
     } catch (error) {
@@ -34,9 +36,10 @@ class ApiUser {
   }
   async Update(req, res) {
     try {
+      const organization_id = 1
       const { id } = req.params
       const { name, email, password, role } = req.body
-      const user = {} //await service.update(user)
+      const user = await serviceUser.Update(organization_id, id, name, email, password, role)
 
       res.status(200).send({ user })
     } catch (error) {
@@ -47,7 +50,7 @@ class ApiUser {
     try {
       const organization_id = 1
       const { id } = req.params
-      const user = {} //await service.delete(user)  
+      const user = await serviceUser.Delete(organization_id, id)  
 
       res.status(200).send({ user })
     } catch (error) {
