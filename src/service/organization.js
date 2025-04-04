@@ -1,10 +1,11 @@
+const generatePassword = require('../fns/generate-password')
 const modelOrganization = require('../model/organization')
-const ServiceUser = require('./user')
+const serviceUser = require('./user')
 
 class ServiceOrganization {
 
     async FindById(id, transaction) {
-      return modelOrganization.findByPk(id, {transaction})
+      return modelOrganization.findByPk(id, { transaction })
     }
 
     async Create(name, address, phone, email, transaction) {
@@ -22,8 +23,8 @@ class ServiceOrganization {
             { transaction }
         )
 
-        const password = "abc123"
-        const user = await ServiceUser.Create(
+        const password = generatePassword
+        const user = await serviceUser.Create(
           organization.id, 
           `Admin${name}`,
           email,
@@ -49,13 +50,15 @@ class ServiceOrganization {
         return organization.save({ transaction })
     }
 
-    async Delete(organization_id, id, transaction) {
+    async Delete(id, transaction) {
         const organization = await this.FindById(id, transaction)
+        
+        if(!organization) {
+          throw new Error('Empresa não encontrada')
+        }
 
         organization.destroy({ transaction })
     }
-
-
 }
 
 module.exports = new ServiceOrganization()

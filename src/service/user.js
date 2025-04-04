@@ -5,9 +5,9 @@ const roles = ['admin', 'employee']
 const salt = 12 
 
 class ServiceUser {
-  async FindAll(organization_id) {
+  async FindAll(organization_id, transaction) {
       return modelUser.findAll(
-        { where: {organization_id }, transaction}
+        { where: { organization_id }, transaction}
       )
   }
 
@@ -44,7 +44,7 @@ class ServiceUser {
           throw new Error('Usuário não encontrado')
       }
 
-      if(!role || !roles.includes(role)) {
+      if(!role && !roles.includes(role)) {
         throw new Error('Favor informar o campo permissão corretamente')
       } 
 
@@ -70,6 +70,9 @@ class ServiceUser {
 
       oldUser.destroy({ transaction })
   }
+
+  // async Login () 
+  // async Verify()
 }
 
 module.exports = new ServiceUser()
