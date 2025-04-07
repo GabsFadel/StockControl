@@ -33,7 +33,7 @@ class ServiceOrganization {
           transaction
         )
 
-        return { organization, user: { ...user.dataValues, password} }
+        return { organization, user: { ...user.dataValues, password } }
     }
 
     async Update(id, name, address, phone, email, transaction) {
