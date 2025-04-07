@@ -1,109 +1,67 @@
-Controle de Estoque - API
-Descrição
+# 📦 Controle de Estoque - API
+
+## 📜 Descrição
 Esta API foi desenvolvida para gerenciar o controle de estoque de produtos. Ela permite:
-Criar e gerenciar usuários.
-Gerenciar produtos.
-Registrar movimentações de entrada e saída no estoque.
-Separar dados por organização (empresa).
 
-Estrutura do Projeto
+- ✅ Criar e gerenciar usuários.  
+- ✅ Gerenciar produtos.  
+- ✅ Registrar movimentações de entrada e saída no estoque.  
+- ✅ Separar dados por organização (empresa).  
+
+---
+
+## 📁 Estrutura do Projeto
 O projeto segue uma estrutura modular para facilitar a manutenção e expansão.
-Diretórios e Arquivos
-src/api
-Contém os controladores que lidam com as requisições e respostas da API.
-inventory.js: Lida com operações relacionadas ao estoque.
-inventoryMovement.js: Gerencia as movimentações de entrada e saída de produtos no estoque.
-organization.js: Gerencia dados das organizações (empresas).
-products.js: Gerencia o cadastro e consulta de produtos.
-user.js: Gerencia o cadastro e autenticação de usuários.
 
-src/fns
-Contém funções utilitárias reutilizáveis no projeto.
-src/middleware
-Contém middlewares para a API.
-auth.js: Middleware de autenticação, garantindo acesso somente a usuários autorizados.
+### 📂 Diretórios e Arquivos Principais
 
-src/model
-Define os modelos de dados usados na API.
-inventory.js: Modelo para dados de estoque.
-inventoryMovement.js: Modelo para as movimentações de estoque.
-organization.js: Modelo para organizações (empresas).
-products.js: Modelo para produtos.
-user.js: Modelo para usuários.
+**`src/api`** - Contém os controladores da API.  
+- `inventory.js`: Lida com operações relacionadas ao estoque.
+- `inventoryMovement.js`: Gerencia movimentações de produtos.
+- `organization.js`: Gerencia dados das organizações (empresas).
+- `products.js`: Gerencia o cadastro e consulta de produtos.
+- `user.js`: Gerencia o cadastro e autenticação de usuários.
 
-src/route
-Contém as rotas da API que conectam os endpoints aos controladores.
-inventory.js: Rotas relacionadas ao estoque.
-inventoryMovement.js: Rotas para movimentações de produtos.
-organization.js: Rotas para organizações (empresas).
-products.js: Rotas para gerenciamento de produtos.
-user.js: Rotas para gerenciamento e autenticação de usuários.
+**`src/fns`** - Contém funções utilitárias reutilizáveis.
 
-src/service
-Contém serviços que se conectam ao banco de dados ou executam lógica específica.
-database.js: Configuração e conexão com o banco de dados.
+**`src/middleware`** - Contém middlewares da API.  
+- `auth.js`: Middleware de autenticação para acesso seguro.
 
-Outros Arquivos Importantes
-.gitignore: Define os arquivos e pastas a serem ignorados pelo Git.
-index.js: Arquivo principal que inicia o servidor da API.
-package.json: Contém as dependências e scripts do projeto.
-package-lock.json: Arquivo gerado automaticamente para travar as versões das dependências.
+**`src/model`** - Define os modelos de dados usados na API.  
+- `inventory.js`: Modelo para dados de estoque.
+- `inventoryMovement.js`: Modelo para movimentações de estoque.
+- `organization.js`: Modelo para organizações (empresas).
+- `products.js`: Modelo para produtos.
+- `user.js`: Modelo para usuários.
 
-Instalação
-git clone
+**`src/route`** - Define as rotas da API.  
+- `inventory.js`: Rotas do estoque.
+- `inventoryMovement.js`: Rotas das movimentações de produtos.
+- `organization.js`: Rotas das organizações.
+- `products.js`: Rotas dos produtos.
+- `user.js`: Rotas dos usuários.
+
+**`src/service`** - Contém serviços da API.  
+- `database.js`: Configuração e conexão com o banco de dados.
+
+**Outros Arquivos Importantes**  
+- `.gitignore`: Define arquivos ignorados pelo Git.
+- `index.js`: Arquivo principal da API.
+- `package.json`: Lista dependências do projeto.
+- `package-lock.json`: Mantém versões das dependências travadas.
+
+---
+
+## 🚀 Instalação
+
+```sh
+# Clone o repositório
+git clone <URL-DO-REPOSITORIO>
+
+# Instale as dependências
 npm install
-Configure o banco de dados no arquivo src/service/database.js para usar MySQL via XAMPP.
+
+# Configure o banco de dados no arquivo src/service/database.js
+
+# Inicie a API
 npm start
-
-Endpoints Principais
-Inventory
-GET /inventory: Retorna todos os registros de estoque.
-GET /inventory/:id: Retorna um registro específico de estoque pelo ID.
-POST /inventory: Cria um novo registro de estoque.
-PUT /inventory/:id: Atualiza um registro de estoque pelo ID.
-DELETE /inventory/:id: Exclui um registro de estoque pelo ID.
-
-Inventory Movement
-GET /inventoryMovement: Retorna todas as movimentações de estoque.
-GET /inventoryMovement/:id: Retorna uma movimentação específica pelo ID.
-POST /inventoryMovement: Cria uma nova movimentação de estoque.
-PUT /inventoryMovement/:id: Atualiza uma movimentação de estoque pelo ID.
-DELETE /inventoryMovement/:id: Exclui uma movimentação de estoque pelo ID.
-
-Organization
-GET /organization/:id: Retorna os dados de uma organização pelo ID.
-POST /organization: Cria uma nova organização.
-PUT /organization/:id: Atualiza os dados de uma organização pelo ID.
-DELETE /organization/:id: Exclui uma organização pelo ID.
-
-Product
-GET /products: Retorna todos os produtos cadastrados.
-GET /products/:id: Retorna os dados de um produto pelo ID.
-POST /products: Cria um novo produto.
-PUT /products/:id: Atualiza os dados de um produto pelo ID.
-DELETE /products/:id: Exclui um produto pelo ID.
-
-Usuários
-POST /users: Cria um novo usuário.
-POST /users/login: Autentica um usuário.
-
-Banco de Dados
-Atualmente, o projeto utiliza o MySQL via XAMPP para armazenar os dados. Uma futura adaptação está planejada para suportar o SQL Server.
-Tecnologias Utilizadas
-Node.js: Ambiente de execução JavaScript.
-Express: Framework para construção da API.
-MySQL: Banco de dados utilizado atualmente.
-XAMPP: Ferramenta para gerenciamento do servidor local.
-
-Contribuição
-Contribuições são bem-vindas! Siga as instruções abaixo:
-Fork o repositório.
-Crie um branch para sua feature/bugfix.
-Envie um Pull Request com suas alterações.
-
-Licença
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para mais detalhes.
-
-
-
-Se precisar de mais informações ou suporte, entre em contato!
