@@ -1,10 +1,12 @@
+const serviceInventory = require('../service/inventory')
+
 class ApiInventory {
 
   async FindById(req, res) {
     try {
       const organization_id = 1
       const { id } = req.params
-      const inventory = {} //await service.findById(inventory
+      const inventory = await serviceInventory.FindById(organization_id, id)
 
       res.status(200).send({ inventory })
     } catch (error) {
@@ -14,7 +16,7 @@ class ApiInventory {
   async FindAll(req , res) {
     try {
       const organization_id = 1
-      const inventories = [{}] //await service.findAll(inventory
+      const inventories = await serviceInventory.FindAll(organization_id)
 
       res.status(200).send({ inventories })
     } catch (error) {
@@ -25,7 +27,7 @@ class ApiInventory {
     try {
       const organization_id = 1
       const { name } = req.body 
-      const inventory = {  } //await service.create(inventory)
+      const inventory = await serviceInventory.Create(organization_id, name)
 
       res.status(200).send({ inventory })
     } catch (error) {
@@ -37,7 +39,7 @@ class ApiInventory {
       const organization_id = 1
       const { id } = req.params
       const { name } = req.body 
-      const inventory = {} //await service.update(inventory)
+      const inventory = await serviceInventory.Update(organization_id, id, name)
 
       res.status(200).send({ inventory })
     } catch (error) {
@@ -48,7 +50,7 @@ class ApiInventory {
     try {
       const organization_id = 1
       const { id } = req.params
-      const inventory = {} //await service.delete(inventory)  
+      const inventory = await serviceInventory.Delete(organization_id, id)  
 
       res.status(200).send({ inventory })
     } catch (error) {

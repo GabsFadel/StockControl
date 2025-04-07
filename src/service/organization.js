@@ -10,20 +10,20 @@ class ServiceOrganization {
 
     async Create(name, address, phone, email, transaction) {
         if(!name) {
-          throw new error('Favor informar o campo nome')
+          throw new Error('Favor informar o campo nome')
         } else if(!address) {
-          throw new error('Favor informar o campo endereço')
+          throw new Error('Favor informar o campo endereço')
         } else if(!phone) {
-          throw new error('Favor informar o campo telefone')
+          throw new Error('Favor informar o campo telefone')
         } else if(!email) {
-          throw new error('Favor informar o campo email')
+          throw new Error('Favor informar o campo email')
         }
         const organization = await modelOrganization.create(
             { name, address, phone, email },
             { transaction }
         )
 
-        const password = generatePassword
+        const password = generatePassword()
         const user = await serviceUser.Create(
           organization.id, 
           `Admin${name}`,

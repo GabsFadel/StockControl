@@ -19,6 +19,7 @@ class ApiOrganization {
 
       res.status(200).send({ organization })
     } catch (error) {
+      console.log(error)
       res.status(500).send({ msg: error.message })
     }
   }
@@ -26,7 +27,7 @@ class ApiOrganization {
     try {
       const { id } = req.params
       const { name, address, phone, email } = req.body
-      const organization = await serviceOrganization.Update(id, name, address, phone, email )
+      const organization = await serviceOrganization.Update(id, name, address, phone, email)
 
       res.status(200).send({ organization })
     } catch (error) {
