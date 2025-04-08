@@ -1,8 +1,10 @@
 const modelUser = require('../model/user')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const roles = ['admin', 'employee']
 const salt = 12 
+const secretKey = 'MySecretKeyPassword'
 
 class ServiceUser {
   async FindAll(organization_id, transaction) {
@@ -71,8 +73,37 @@ class ServiceUser {
       oldUser.destroy({ transaction })
   }
 
-  // async Login () 
-  // async Verify()
+  async Login (email, password, transaction) {
+    if(!email || !password) {  
+      throw new Error('Favor informar email e senha')
+    }
+
+    const user = await modelUser.findOne(
+      { where: { email } },
+      {transaction}
+    )
+    if(!user) {
+      throw new Error("Email ou senha inválidos") //retorna valor padrão, para não ter brecha para invasores
+    }
+
+    //processo abaixo verifica se email e senha existem, se sim retorna um token
+    const verify = await bcrypt.compare(password, user.password)
+
+    if(verify) {
+      return jwt.sign({
+        id: user.id,
+        role: user.role,
+        organization_id: user.organization_id
+      }, secretKey, { expiresIn: 60 * 60 } )
+    }
+
+    throw new Error("Email ou senha inválidos")
+  }
+  async Verify(id, role, transaction) {
+      return modelUser.findOne(
+          { where: { id, role }, transaction}
+        )
+    }
 }
 
 module.exports = new ServiceUser()
