@@ -41,7 +41,11 @@ class ServiceInventory {
   }
 
   async Update(organization_id, id, name, transaction) {
-    const oldInventory = await this.FindById(organization_id, id, transaction)
+    const oldInventory =  await modelInventory.findOne(
+      { where: { organization_id, id } },
+      { transaction }
+    )
+
     if (!oldInventory) {
       throw new Error('Estoque nao encontrado')
     }
@@ -51,13 +55,17 @@ class ServiceInventory {
   }
 
   async Delete(organization_id, id, name, transaction) {
-    const oldInventory = await this.FindById(organization_id, id, transaction)
+    const oldInventory = await modelInventory.findOne(
+      { where: { organization_id, id } },
+      { transaction }
+    )
+
     if (!oldInventory) {
       throw new Error('Estoque nao encontrado')
     }
     oldInventory.name = name || oldInventory.name
 
-    return oldInventory.destroy({ transaction })
+    await oldInventory.destroy({ transaction })
   }
 
 }

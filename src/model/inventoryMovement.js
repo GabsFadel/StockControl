@@ -48,7 +48,7 @@ class inventoryMovement {
       foreignKey: 'productId'
     })
     this.model.belongsTo(inventory, {
-      foreignKey: 'inventeryId'
+      foreignKey: 'inventoryId'
     })
     User.hasMany(this.model, {
       foreignKey: 'userId'

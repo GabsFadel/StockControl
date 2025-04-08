@@ -4,8 +4,7 @@ class ApiUser {
 
   async FindById(req, res) {
     try {
-      const organization_id = 1 
-      const { id } = req.params
+      const { id, organization_id} = req.session
       const user = await serviceUser.FindById(organization_id, id)
 
       res.status(200).send({ user })
@@ -15,7 +14,7 @@ class ApiUser {
   }
   async FindAll(req , res) {
     try {
-      const organization_id = 1
+      const organization_id = req.session.organization_id
       const users = await serviceUser.FindAll(organization_id)
 
       res.status(200).send({ users })
@@ -25,7 +24,7 @@ class ApiUser {
   }
   async Create(req, res) {
     try {
-      const organization_id = 1
+      const organization_id = req.session.organization_id
       const { name, email, password, role } = req.body
       const user = await serviceUser.Create(organization_id, name, email, password, role)
 
@@ -36,8 +35,8 @@ class ApiUser {
   }
   async Update(req, res) {
     try {
-      const organization_id = 1
-      const { id } = req.params
+      const organization_id = req.session.organization_id
+      const  id = req.params.id || req.session.id
       const { name, email, password, role } = req.body
       const user = await serviceUser.Update(organization_id, id, name, email, password, role)
 
@@ -48,8 +47,8 @@ class ApiUser {
   }
   async Delete(req, res) {
     try {
-      const organization_id = 1
-      const { id } = req.params
+      const organization_id = req.session.organization_id
+      const id = req.params.id || req.session.id
       const user = await serviceUser.Delete(organization_id, id)  
 
       res.status(200).send({ user })
