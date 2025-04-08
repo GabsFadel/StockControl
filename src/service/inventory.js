@@ -1,12 +1,23 @@
+const getProductMovements = require('../fns/get-product-movements')
 const modelInventory = require('../model/inventory')
+const products = require('../model/products')
+const inventoryMovement = require('./inventoryMovement')
 
 class ServiceInventory {
-
   async FindById(organization_id, id, transaction) {
-    return modelInventory.findOne(
+    const inventory = await modelInventory.findOne(
       { where: { organization_id, id } },
       { transaction }
     )
+    if(!inventory) {
+      throw new Error('Estoque nao encontrado')
+    }
+
+    const movements = await inventoryMovement.FindAll(inventory.id) // vai possuir todas as movimentações daquele estoque
+
+    const result = getProductMovements(movements)
+
+    return { ...inventory.dataValues, result } //retorno da função dilui no dataValues
   }
 
   async FindAll(organization_id, transaction) {
