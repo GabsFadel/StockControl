@@ -6,6 +6,7 @@ const inventoryRouter = require('./src/route/inventory')
 const movementRouter = require('./src/route/inventoryMovement')
 const productRouter = require('./src/route/products')
 const apiUser = require('./src/api/user')
+require('dotenv').config()
 
 const port = 3000
 const app = express()
